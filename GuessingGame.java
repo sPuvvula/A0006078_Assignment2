@@ -1,80 +1,55 @@
-//Import all the required packages.
-import java.util.Scanner;
+// Import the readline module for user input.
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-//Create a class with the class name GuessNumber.
-public class GuessNumber
-{
-    //Define a main() method to execute the program.
-	public static void main(String args[])
-	{
-        //Create Scanner class's object.
-		Scanner s = new Scanner(System.in);
-        
-        //Number to be guessed.
-		int number;    
-        
-        //User's guess.
-		int userNumber; 
-        
-        //String version of user's guess.
-		String stringNumber;  
-        
-        //Contains a "Y" or "N" determining if the user wants to continue.
-		String keepGoing;  
+// This is the work done in the detailLoop() method
+// Generate a random number.
+let number = Math.floor(Math.random() * 10) + 1;
 
-		//This is the work done in the detailLoop() method
-		//Generate a random number.
-		number = 1 + (int) (Math.random() * 10); 
+// Prime the loop.
+console.log("Do you want to guess a number? Enter Y or N");
 
-		//Prime the loop.
-		System.out.println("Do you want to guess a number? Enter Y or N");
-		keepGoing  = s.nextLine();
+rl.on('line', (input) => {
+    let keepGoing = input;
 
-		//Validate input.
-		while(!(keepGoing.compareTo("Y")==0 || keepGoing.compareTo("N")==0)) {
-			System.out.println("Please enter correct value. Enter Y or N");
-			keepGoing  = s.nextLine();
-		}
+    // Validate input.
+    while(keepGoing !== "Y" && keepGoing !== "N") {
+        console.log("Please enter correct value. Enter Y or N");
+        keepGoing = rl.prompt();
+    }
 
-		//Enter loop if they want to play.
-		while(keepGoing.compareTo("Y") == 0)
+    // Enter loop if they want to play.
+    while(keepGoing === "Y") {
+        // Get the user's guess.
+        console.log("I'm thinking of a number. .\n Try to guess by entering a number between 1 and 10");
+        let userNumber = rl.prompt();
 
-		{
-			//Get the user's guess.
-			System.out.println("I'm thinking of a number. .\n Try to guess by entering a number between 1 and 10");
+        // Validate input.
+        while(userNumber < 1 || userNumber > 10) {
+            console.log("Please enter correct value. Try to guess by entering a number between 1 and 10");
+            userNumber = rl.prompt();
+        }
 
-			stringNumber  = s.nextLine();
-			userNumber = Integer.parseInt(stringNumber);
+        // Test to see if the user guessed correctly.
+        if(userNumber == number) {
+            keepGoing = "N";
+            console.log("You are a genius. That's correct!");
+        } else {
+            console.log("That's not correct. Do you want to guess again? Enter Y or N");
+            keepGoing = rl.prompt();
 
-			//Validate input.
-			while(userNumber<1 || userNumber>10) 
-			{
-				System.out.println("Please enter correct value. Try to guess by entering a number between 1 and 10");
-				stringNumber  = s.nextLine();
-				userNumber = Integer.parseInt(stringNumber);
-			}
+            // Validate input.
+            while(keepGoing !== "Y" && keepGoing !== "N") {
+                console.log("Please enter correct value. Enter Y or N");
+                keepGoing = rl.prompt();
+            }
+        }
+    } // End of while loop.
 
-			//Test to see if the user guessed correctly.
-			if(userNumber == number)
-			{
-				keepGoing = "N";
-				System.out.println("You are a genius. That's correct!");
-			}
+    rl.close();
+});
 
-			else
-			{
-				System.out.println("That's not correct. Do you want to guess again? Enter Y or N");
-				keepGoing  = s.nextLine();
-
-				// Validate input.
-				while(!(keepGoing.compareTo("Y")==0 || keepGoing.compareTo("N")==0))
-				{
-					System.out.println("Please enter correct value. Enter Y or N");
-					keepGoing  = s.nextLine();
-				}
-			}
-		} // End of while loop.
-
-		System.exit(0);
-	} // End of main() method.
-} // End of GuessNumber class.
+	
