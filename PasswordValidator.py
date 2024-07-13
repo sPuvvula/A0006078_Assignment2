@@ -1,19 +1,21 @@
-attempt = 0
-success = False
+let attempt = 0;
+let success = false;
 
-while True:
-    passcode = input("PIN: ")
-    attempt += 1
+while (true) {
+    let passcode = prompt("PIN: ");
+    attempt += 1;
 
-    if code == "4321":
-        success = True
-        break
+    if (passcode === "4321") {
+        success = true;
+        break;
+    } else if (attempt >= 3) {
+        console.log("Too many incorrect attempts!");
+        break;
+    }
 
-    elif attempt == 1:
-        print("Correct! It only took you one try!")
-        break
+    console.log("Wrong");
+}
 
-    print("Wrong")
-
-if success == True:
-    print("Correct! It took you {attempt} attempts")
+if (success === true) {
+    console.log(`Correct! It took you ${attempt} attempts`);
+}
