@@ -1,21 +1,12 @@
-import java.util.Scanner;
- 
-public class Exercise7 {
- 
- public static void main(String[] args) {
-  // Create a Scanner object to read input from the user
-  Scanner in = new Scanner(System.in);
-   
-  // Prompt the user to input a number
-  System.out.print("Input a number: ");
-  
-  // Read and store the input number
-  int num1 = in.nextInt();
-   
-  // Use a loop to calculate and print the multiplication table for the input number
-  for (int i = 0; i < 10; i++) {
-     // Calculate and print the result of num1 multiplied by (i+1)
-     System.out.println(num1 + " x " + (i + 1) + " = " + (num1 * (i + 1)));
-  }
- }
+
+// Use the prompt function to get input from the user
+let num1 = prompt("Input a number: ");
+
+// Convert the input to a number
+num1 = Number(num1);
+
+// Use a loop to calculate and print the multiplication table for the input number
+for (let i = 0; i < 10; i++) {
+    // Calculate and print the result of num1 multiplied by (i+1)
+    console.log(num1 + " x " + (i + 1) + " = " + (num1 * (i + 1)));
 }
